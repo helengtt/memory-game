@@ -1,68 +1,48 @@
 /*
- * Create a list that holds all cards
+ * Create a list that holds all card symbols
  */
-const cardElement = document.querySelector('.deck');
-cardElement.innerHTML =`
-    <li class="card">
-        <i class="fa fa-diamond"></i>
-    </li>
-    <li class="card">
-        <i class="fa fa-paper-plane-o"></i>
-    </li>
-    <li class="card">
-        <i class="fa fa-anchor"></i>
-    </li>
-    <li class="card">
-        <i class="fa fa-bolt"></i>
-    </li>
-    <li class="card">
-        <i class="fa fa-cube"></i>
-    </li>
-    <li class="card">
-        <i class="fa fa-anchor"></i>
-    </li>
-    <li class="card">
-        <i class="fa fa-leaf"></i>
-    </li>
-    <li class="card">
-        <i class="fa fa-bicycle"></i>
-    </li>
-    <li class="card">
-        <i class="fa fa-diamond"></i>
-    </li>
-    <li class="card">
-        <i class="fa fa-bomb"></i>
-    </li>
-    <li class="card">
-        <i class="fa fa-leaf"></i>
-    </li>
-    <li class="card">
-        <i class="fa fa-bomb"></i>
-    </li>
-    <li class="card">
-        <i class="fa fa-bolt"></i>
-    </li>
-    <li class="card">
-        <i class="fa fa-bicycle"></i>
-    </li>
-    <li class="card">
-        <i class="fa fa-paper-plane-o"></i>
-    </li>
-    <li class="card">
-        <i class="fa fa-cube"></i>
-    </li>
-`;
-const card = document.getElementsByClassName('card');
-// getElementsByClassName() returns array-like HTMLCollection / NodeList instead of an array, array-like object inherits object.prototype instead of Array.prototype.
-// creat cards array
-const cards = [...card];
+const symbols = ['fa fa-diamond', 'fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-paper-plane-o', 'fa fa-anchor', 'fa fa-anchor', 'fa fa-bolt', 'fa fa-bolt', 'fa fa-cube', 'fa fa-cube', 'fa fa-anchor', 'fa fa-anchor', 'fa fa-leaf', 'fa fa-leaf', 'fa fa-bicycle', 'fa fa-bicycle'];
 
-// display the clicked cards' symbol
+/*
+ * Display the cards on the page
+ */
+
+// - shuffle cards (Shuffle function from http://stackoverflow.com/a/2450976)
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
+
+//  - loop through each card and create its HTML
+//  - add each card's HTML to the page
+let symbolList = shuffle(symbols);
+function creatCard(){
+    const deck = document.querySelector('.deck');
+    for (const symbol of symbolList){
+        const cardHtmlText = `<li class="card"><i class="${symbol}"></i></li>`;
+        deck.insertAdjacentHTML('beforeend', cardHtmlText);
+    }
+}
+
+window.onload = creatCard();
+
+// display the clicked cards
 let displayCard = function(){
     this.setAttribute('style', 'background: #02b3e4; font-size: 33px; cursor: default;');
 }
 
 // set up the click event listener for a card
+const cardElement = document.getElementsByClassName('card');
+const cards = [...cardElement];
 for (const card of cards){
     card.addEventListener('click', displayCard);
-};
+}
