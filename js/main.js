@@ -24,6 +24,7 @@ function shuffle(array) {
 
 // loop through each card and create its HTML
 let symbolList = shuffle(symbols);
+
 function creatCard(){
     const deck = document.querySelector('.deck');
     // add each card's HTML to the page
@@ -46,6 +47,7 @@ for (const card of cards){
 // display the clicked cards
 // add the card to a *list* of "open" cards
 let openedCards = [];
+
 function displayCard(){
     this.classList.add('open');
     openedCards.push(this);
@@ -57,10 +59,14 @@ function matchCard(){
     if (openedCards.length === 2) { 
         if (openedCards[0].firstChild.className === openedCards[1].firstChild.className) {
             matched();
+            moves++;
         } else {
             unmatched();
+            moves++;
         }
     }
+    // trigger moves counter
+    moveCounter();
 }
 
 // if the cards do match, lock the cards
@@ -78,6 +84,13 @@ function unmatched(){
         openedCards[0].classList.remove('open');
         openedCards[1].classList.remove('open');
         openedCards = [];
-    },1000);
-    
+    },500);
+}
+
+// increment the move counter and display it on the page
+let moves = 0;
+
+function moveCounter(){
+    let movesElement = document.getElementsByClassName('moves');
+    movesElement[0].innerText = moves;
 }
