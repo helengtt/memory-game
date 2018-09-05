@@ -41,17 +41,24 @@ const cardElement = document.getElementsByClassName('card');
 const cards = [...cardElement];
 
 for (const card of cards){
-    card.addEventListener('click', displayCard);
+    card.addEventListener('click', onClick);
+}
+
+// debug multiple cards display with flag variable
+function onClick(){
+    if (flag === false) {
+        displayCard(this);
+        matchCard();
+    }
 }
 
 // display the clicked cards
 // add the card to a *list* of "open" cards
 let openedCards = [];
 
-function displayCard(){
-    this.classList.add('open');
-    openedCards.push(this);
-    matchCard();
+function displayCard(card){
+    card.classList.add('open');
+    openedCards.push(card);
 }
 
 // check to see if the two cards match
@@ -79,12 +86,16 @@ function matched(){
 }
 
 // if the cards do not match, hide the cards
+let flag = false;
+// debug multiple cards display with flag variable
 function unmatched(){
+    flag = true;
     setTimeout (function(){
         openedCards[0].classList.remove('open');
         openedCards[1].classList.remove('open');
         openedCards = [];
-    },500);
+        flag = false;
+    },1000);
 }
 
 // increment the move counter and display it on the page
