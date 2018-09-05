@@ -50,6 +50,10 @@ function onClick(){
         displayCard(this);
         matchCard();
     }
+    // start timer on first click
+    if (seconds === 0) {
+        startTimer();
+    }
 }
 
 // display the clicked cards
@@ -95,13 +99,31 @@ function unmatched(){
         openedCards[1].classList.remove('open');
         openedCards = [];
         flag = false;
-    },1000);
+    },500);
 }
 
 // increment the move counter and display it on the page
 let moves = 0;
 
 function moveCounter(){
-    let movesElement = document.getElementsByClassName('moves');
-    movesElement[0].innerText = moves;
+    const movesElement = document.querySelector('.moves');
+    movesElement.innerHTML = moves;
+    // star rating
+    const starElement = document.getElementsByClassName('fa-star');
+    const i = starElement.length;
+    if (moves > 12 && moves <= 20) {
+        starElement[i-1].classList.add('hidestar');
+    } else if (moves > 20) {
+        starElement[i-2].classList.add('hidestar');
+    }
+}
+
+// timer function
+let seconds = 0;
+let timer = document.querySelector('.timer');
+function startTimer(){
+    setInterval (function(){
+        timer.innerHTML = `${parseInt(seconds/3600)} hours ${parseInt((seconds%60)/60)} mins ${seconds%60} secs`;
+        seconds++;
+    }, 1000);
 }

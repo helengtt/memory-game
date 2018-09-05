@@ -78,7 +78,7 @@ style for deck
 
 .score-panel {
     text-align: left;
-    width: 35%;
+    width: 60%;
     margin-bottom: 10px;
 }
 
@@ -90,6 +90,14 @@ style for deck
 .score-panel .stars li {
     display: inline-block;
     list-style: none;
+}
+
+.score-panel .stars .hidestar {
+    color: #ffffff;
+}
+
+.score-panel .timer {
+    margin: 0 0 0 15px;
 }
 
 .score-panel .restart {
