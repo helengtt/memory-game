@@ -78,6 +78,8 @@ function matchCard(){
     }
     // trigger moves counter
     moveCounter();
+    // stop timer when all cards matched
+    stopTimer();
 }
 
 // if the cards do match, lock the cards
@@ -121,9 +123,18 @@ function moveCounter(){
 // timer function
 let seconds = 0;
 let timer = document.querySelector('.timer');
+let timerInterval;
 function startTimer(){
+    timerInterval = 
     setInterval (function(){
-        timer.innerHTML = `${parseInt(seconds/3600)} hours ${parseInt((seconds%60)/60)} mins ${seconds%60} secs`;
+        timer.innerHTML = `${parseInt(seconds/3600)} hours ${parseInt((seconds%3600)/60)} mins ${seconds%60} secs`;
         seconds++;
     }, 1000);
+}
+// stop timer when all cards matched
+let matchedCards = document.getElementsByClassName('match');
+function stopTimer(){
+    if (matchedCards.length === 16){
+        clearInterval(timerInterval);
+    }
 }
