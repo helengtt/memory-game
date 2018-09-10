@@ -22,27 +22,25 @@ function shuffle(array) {
     return array;
 }
 
-// loop through each card and create its HTML
 let symbolList = shuffle(symbols);
 
-function creatCard(){
+// loop through each card and create its HTML
+function createCard(){
     const deck = document.querySelector('.deck');
     // add each card's HTML to the page
     for (const symbol of symbolList){
         const cardHtmlText = `<li class="card"><i class="${symbol}"></i></li>`;
         deck.insertAdjacentHTML('beforeend', cardHtmlText);
     }
+    // set up the click event listener for a card
+    const cardElement = document.getElementsByClassName('card');
+    const cards = [...cardElement];
+    for (const card of cards){
+        card.addEventListener('click', onClick);
+    }
 }
 
-window.onload = creatCard();
-
-// set up the click event listener for a card
-const cardElement = document.getElementsByClassName('card');
-const cards = [...cardElement];
-
-for (const card of cards){
-    card.addEventListener('click', onClick);
-}
+window.onload = createCard();
 
 // debug multiple cards display with flag variable
 function onClick(){
@@ -113,7 +111,12 @@ function moveCounter(){
     // star rating
     const starElement = document.getElementsByClassName('fa-star');
     const i = starElement.length;
-    if (moves > 12 && moves <= 20) {
+    
+    if (moves === 0){
+        for (const star of starElement){
+            star.classList.remove('hidestar');
+        }
+    } else if (moves > 12 && moves <= 20) {
         starElement[i-1].classList.add('hidestar');
     } else if (moves > 20) {
         starElement[i-2].classList.add('hidestar');
@@ -137,4 +140,30 @@ function stopTimer(){
     if (matchedCards.length === 16){
         clearInterval(timerInterval);
     }
+}
+
+// reset the game
+let reset = document.querySelector('.fa-repeat');
+reset.addEventListener('click', restart);
+
+function restart(){
+    // reset cards
+    const removeCards = document.querySelectorAll('.card');
+    for (const removeCard of removeCards){
+        removeCard.remove();
+    }
+    seconds = 0; // start timer after click
+    createCard();
+    // reset moves
+    moves = 0;
+    moveCounter();
+    // reset stars
+    const hidestars = document.querySelectorAll('.fa-star');
+    for (const hidestar of hidestars){
+        hidestar.classList.remove('hidestar');
+    }
+    // reset timer
+    clearInterval(timerInterval);
+    const removeTimer = document.querySelector('.timer');
+    removeTimer.textContent = '';
 }
