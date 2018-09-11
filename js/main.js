@@ -42,9 +42,13 @@ function createCard(){
 
 window.onload = createCard();
 
-// debug multiple cards display with flag variable
-function onClick(){
-    if (flag === false) {
+function onClick(event){
+    // debug matched cards being clicked
+    if (this.classList.contains('match')) {
+        event.preventDefault();
+    }
+    // debug multiple cards display problem with flag variable
+    else if (flag === false) {
         displayCard(this);
         matchCard();
     }
@@ -59,6 +63,7 @@ function onClick(){
 let openedCards = [];
 
 function displayCard(card){
+    
     card.classList.add('open');
     openedCards.push(card);
 }
