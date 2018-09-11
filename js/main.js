@@ -104,14 +104,13 @@ function unmatched(){
 
 // increment the move counter and display it on the page
 let moves = 0;
+const starElement = document.getElementsByClassName('fa-star');
+const i = starElement.length;
 
 function moveCounter(){
     const movesElement = document.querySelector('.moves');
     movesElement.innerHTML = moves;
     // star rating
-    const starElement = document.getElementsByClassName('fa-star');
-    const i = starElement.length;
-    
     if (moves === 0){
         for (const star of starElement){
             star.classList.remove('hidestar');
@@ -143,8 +142,25 @@ function stopTimer(){
     }
 }
 
+// Congratulations Popup
 function congrats(){
-    
+    const popup = document.querySelector('.popup');
+    popup.classList.add('popup-show');
+    // score result
+    const scoreResult = document.querySelector('.score-result');
+    const hidestar = document.getElementsByClassName('hidestar');
+    let stars = i - hidestar.length;
+    scoreResult.innerHTML = `With ${moves} Moves and ${stars} Stars. Wooooooo!`;
+    // overlay
+    const overlay = document.querySelector('.overlay');
+    overlay.classList.add('overlay-show');
+    // play again button event listener
+    const playagain = document.querySelector('.play-again');
+    playagain.addEventListener('click', function(){
+        restart();
+        popup.classList.remove('popup-show');
+        overlay.classList.remove('overlay-show');
+    });
 }
 
 // reset the game

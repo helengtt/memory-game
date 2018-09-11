@@ -112,7 +112,7 @@ h1 {
     visibility: hidden;
 }
 
-.show{
+.popup-show{
     visibility: visible;
     position: fixed;
     z-index: 2;
@@ -127,6 +127,7 @@ h1 {
     background-color: #ffffff;
 }
 
+/* from w3school https://www.w3schools.com/howto/howto_css_overlay.asp */
 .overlay-show{
     position: fixed; /* Sit on top of the page content */
     width: 100%; /* Full width (cover the whole page) */
