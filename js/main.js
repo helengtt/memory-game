@@ -139,7 +139,12 @@ let matchedCards = document.getElementsByClassName('match');
 function stopTimer(){
     if (matchedCards.length === 16){
         clearInterval(timerInterval);
+        congrats();
     }
+}
+
+function congrats(){
+    
 }
 
 // reset the game
@@ -167,3 +172,4 @@ function restart(){
     const removeTimer = document.querySelector('.timer');
     removeTimer.textContent = '';
 }
+
