@@ -44,7 +44,8 @@ window.onload = createCard();
 
 function onClick(event){
     // debug matched cards being clicked
-    if (this.classList.contains('match')) {
+    // debug double clicking one card
+    if (this.classList.contains('match') || this.classList.contains('open')) {
         event.preventDefault();
     }
     // debug multiple cards display problem with flag variable
@@ -63,7 +64,6 @@ function onClick(event){
 let openedCards = [];
 
 function displayCard(card){
-    
     card.classList.add('open');
     openedCards.push(card);
 }
