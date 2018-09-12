@@ -22,10 +22,9 @@ function shuffle(array) {
     return array;
 }
 
-let symbolList = shuffle(symbols);
-
 // loop through each card and create its HTML
 function createCard(){
+    let symbolList = shuffle(symbols);
     const deck = document.querySelector('.deck');
     // add each card's HTML to the page
     for (const symbol of symbolList){
