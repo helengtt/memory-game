@@ -42,6 +42,7 @@ function createCard(){
 
 window.onload = createCard();
 
+let clicks = 0;
 function onClick(event){
     // debug matched cards being clicked
     // debug double clicking one card
@@ -54,7 +55,8 @@ function onClick(event){
         matchCard();
     }
     // start timer on first click
-    if (seconds === 0) {
+    clicks++;
+    if (clicks === 1 ){
         startTimer();
     }
 }
