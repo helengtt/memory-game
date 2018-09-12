@@ -148,3 +148,74 @@ h1 {
     border-radius: 5px;
     cursor: pointer;
 }
+
+.check{
+    font-size: 3em;
+    font-weight: lighter;
+    color: #20cca6;
+}
+
+/* 
+ * css animation 
+ */
+
+/* source: https://codepen.io/codeams/pen/IuGxn */
+.bounce-in{
+    animation: bounceIn 0.82s cubic-bezier(0.36,0.07,0.19,0.97) both;   
+}
+
+@keyframes bounceIn{
+    0%{
+      opacity: 0;
+      transform: scale(0.3) translate3d(0,0,0);
+    }
+    50%{
+      opacity: 0.9;
+      transform: scale(1.1);
+    }
+    80%{
+      opacity: 1;
+      transform: scale(0.89);
+    }
+    100%{
+      opacity: 1;
+      transform: scale(1) translate3d(0,0,0);
+    }
+}
+
+ /* source: https://css-tricks.com/snippets/css/shake-css-keyframe-animation/ */
+.shake{
+    animation: shake 0.82s cubic-bezier(0.36,0.07,0.19,0.97) both;
+}
+
+@keyframes shake {
+    10%, 90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+    
+    20%, 80% {
+      transform: translate3d(2px, 0, 0);
+    }
+  
+    30%, 50%, 70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+  
+    40%, 60% {
+      transform: translate3d(4px, 0, 0);
+    }
+}
+
+.zoom-in {
+    animation: zoomIn 0.82s both;
+}
+
+@keyframes zoomIn {
+    0% {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+    }
+    50% {
+    opacity: 1;
+    }
+}

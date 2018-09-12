@@ -89,8 +89,8 @@ function matchCard(){
 
 // if the cards do match, lock the cards
 function matched(){
-    openedCards[0].classList.add('match');
-    openedCards[1].classList.add('match');
+    openedCards[0].classList.add('match','bounce-in');
+    openedCards[1].classList.add('match','bounce-in');
     openedCards[0].classList.remove('open');
     openedCards[1].classList.remove('open');
     openedCards = [];
@@ -101,9 +101,11 @@ let flag = false;
 // debug multiple cards display with flag variable
 function unmatched(){
     flag = true;
+    openedCards[0].classList.add('shake');
+    openedCards[1].classList.add('shake');
     setTimeout (function(){
-        openedCards[0].classList.remove('open');
-        openedCards[1].classList.remove('open');
+        openedCards[0].classList.remove('open', 'shake');
+        openedCards[1].classList.remove('open', 'shake');
         openedCards = [];
         flag = false;
     },500);
@@ -145,7 +147,7 @@ let matchedCards = document.getElementsByClassName('match');
 function stopTimer(){
     if (matchedCards.length === 16){
         clearInterval(timerInterval);
-        congrats();
+        setTimeout(congrats,500);
     }
 }
 
@@ -153,6 +155,9 @@ function stopTimer(){
 function congrats(){
     const popup = document.querySelector('.popup');
     popup.classList.add('popup-show');
+    // check icon zoom in
+    const zoomIn = document.querySelector('.fa-check-circle');
+    zoomIn.classList.add('zoom-in');
     // score result
     const scoreResult = document.querySelector('.score-result');
     const hidestar = document.getElementsByClassName('hidestar');
@@ -167,6 +172,7 @@ function congrats(){
         restart();
         popup.classList.remove('popup-show');
         overlay.classList.remove('overlay-show');
+        zoomIn.classList.remove('zoom-in');
     });
 }
 
@@ -180,7 +186,7 @@ function restart(){
     for (const removeCard of removeCards){
         removeCard.remove();
     }
-    seconds = 0; // start timer after click
+    clicks = 0; // start timer after click
     createCard();
     // reset moves
     moves = 0;
