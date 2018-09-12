@@ -5,6 +5,7 @@ This is a simple matching game to test a game player's memory. There are 16 card
 
 ## How to Play
 The link of the game is 
+
 You can play the game across modern desktop, tablet, and phone browsers.
 
 ## Project Introduction
@@ -13,8 +14,8 @@ The project uses DOM manipulation of Javascript in ES6, with responsive design a
 - Shuffle cards
 - Display the cards on the page
 - Show the clicked cards
-- Set up event listener for click;
-  - Show a clicked card;
+- Set up event listener for click
+  - Show a clicked card
   - Check to see if the two cards match
     - If match, lock the cards
     - If not match, hide the cards

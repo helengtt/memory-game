@@ -186,6 +186,7 @@ function restart(){
     for (const removeCard of removeCards){
         removeCard.remove();
     }
+    seconds = 0;
     clicks = 0; // start timer after click
     createCard();
     // reset moves
