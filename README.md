@@ -4,7 +4,7 @@
 This is a simple matching game to test a game player's memory. There are 16 cards in total and 8 matches. The player need to remember the icon on each card and match them in less time with less moves.
 
 ## How to Play
-The link of the game is 
+The link of the game is https://portfolio-site-90676.firebaseapp.com/memory-game/index.html
 
 You can play the game across modern desktop, tablet, and phone browsers.
 
